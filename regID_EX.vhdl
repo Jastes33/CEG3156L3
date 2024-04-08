@@ -139,7 +139,7 @@ instB : reg8
 		i_data(2) => '0',
 		i_data(1) => '0',
 		i_data(0) => '0',
-		o_Q => o_instB
+		o_Q(4 downto 0) => o_instB
 		);
 		
 
@@ -152,7 +152,7 @@ instC : reg8
 		i_data(2) => '0',
 		i_data(1) => '0',
 		i_data(0) => '0',
-		o_Q => o_instC
+		o_Q(4 downto 0) => o_instC
 		);
 		
 

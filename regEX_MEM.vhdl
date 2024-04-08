@@ -15,7 +15,7 @@ ENTITY regEX_MEM IS
 		o_WB :OUT STD_LOGIC_VECTOR(1 downto 0);
 		o_M : OUT STD_LOGIC_VECTOR(2 downto 0);
 		o_addr,o_ALU,o_readB : OUT STD_LOGIC_VECTOR(7 downto 0);
-		o_instA :OUT STD_LOGIC_VECTOR(31 downto 0);
+		o_instA :OUT STD_LOGIC_VECTOR(4 downto 0);
 		o_zero		: OUT	STD_LOGIC);
 		
 END regEX_MEM;
@@ -87,7 +87,7 @@ instB : reg8
 		i_data(2) => '0',
 		i_data(1) => '0',
 		i_data(0) => i_zero,
-		o_Q => o_instA,
+		o_Q(7 downto 3) => o_instA,
 		o_Q(0) => o_zero
 		);
 		
