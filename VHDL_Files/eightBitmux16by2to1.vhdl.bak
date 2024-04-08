@@ -1,0 +1,68 @@
+--Lab1 Group 3 CEG3155
+--Jessica Hemstead 300214909
+--Alexander Wilson 300219585
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY eightBitmux16by2to1 IS
+	PORT(
+		i_op0,i_op1,i_op2,i_op3,i_op4,i_op5,i_op6,i_op7:IN STD_LOGIC_VECTOR(7 downto 0);
+		i_op8,i_op9,i_op10,i_op11,i_op12,i_op13,i_op14,i_op15:IN STD_LOGIC_VECTOR(7 downto 0);
+		i_selection: IN STD_LOGIC_VECTOR(15 downto 0);
+		o_choice:OUT STD_LOGIC_VECTOR(7 downto 0));
+END eightBitmux16by2to1;
+
+Architecture rtl OF eightBitmux16by2to1 IS
+
+SIGNAL int_op : STD_LOGIC_VECTOR(15 downto 0);
+SIGNAL int_choice : STD_LOGIC_VECTOR(13 downto 0);
+
+
+
+
+component eightBitmux2to1 IS
+	PORT(
+		i_op0:IN STD_LOGIC_VECTOR(7 downto 0);
+		i_op1:IN STD_LOGIC_VECTOR(7 downto 0);
+		i_selection: IN STD_LOGIC;
+		o_choice:OUT STD_LOGIC_VECTOR(7 downto 0));
+END COMPONENT;
+BEGIN
+		AMUX_BLOCK : eightBitmux2to1
+		PORT MAP(
+		i_op0 => int_op(1),
+		i_op1 => int_op(2),
+		i_selection => i_selection(i),
+		o_choice => int_choice(1) 
+		);
+		MUX_GENERATE :FOR i IN 1 TO 14 GENERATE
+		
+		MUX_BLOCK : eightBitmux2to1
+		PORT MAP(
+		i_op0 => int_op(i),
+		i_op1 => int_choice(i),
+		i_selection => i_selection(i),
+		o_choice => int_choice(i+1) 
+		);
+		END GENERATE;
+
+
+END eightBitmux2to1_a;		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		regmux : eightBitmux2to1
+		PORT MAP(
+		i_op0 => int_regout(j),
+		i_op1 => int_regout((j+1)mod 15),
+		i_selection=> (i_MEMread AND(int_A(i) AND int_B(j))),
+		o_choice => int_regout((j+2)mod 15)
+		);

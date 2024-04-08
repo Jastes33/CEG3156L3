@@ -1,0 +1,69 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY regMEM_WB IS
+	PORT(
+		i_WB :IN STD_LOGIC_VECTOR(1 downto 0);
+		i_addr,i_read : IN STD_LOGIC_VECTOR(7 downto 0);
+		i_instA :IN STD_LOGIC_VECTOR(4 downto 0);
+		
+		i_clear	: IN	STD_LOGIC;
+		i_clock		: IN	STD_LOGIC;
+		i_Enable		: IN STD_LOGIC;
+		
+		o_WB :OUT STD_LOGIC_VECTOR(1 downto 0);
+		o_addr,o_read: OUT STD_LOGIC_VECTOR(7 downto 0);
+		o_instA :OUT STD_LOGIC_VECTOR(31 downto 0));
+		
+END regMEM_WB;
+
+ARCHITECTURE rtl OF regMEM_WB IS
+
+COMPONENT reg8
+	PORT(
+		i_clear	: IN	STD_LOGIC;
+		i_clock			: IN	STD_LOGIC;
+		i_Enable			: IN STD_LOGIC;
+		i_data: IN STD_LOGIC_VECTOR(7 downto 0);
+		o_Q			: OUT	STD_LOGIC_VECTOR(7 downto 0));
+		
+END COMPONENT;
+
+BEGIN
+ControlA : reg8
+	PORT MAP(
+		i_clear => i_clear,
+		i_clock => i_clock,
+		i_Enable => i_enable,
+		i_data(7 downto 6) => i_WB,
+		i_data(5) => '0',
+		i_data(4 downto 0) => i_instA,
+		o_Q(7 downto 6) => o_WB,
+		o_Q(4 downto 0) => o_instA
+		);
+
+address : reg8
+	PORT MAP(
+		i_clear => i_clear,
+		i_clock => i_clock,
+		i_Enable => i_enable,
+		i_data => i_addr,
+		o_Q => o_addr
+		);
+		
+readdataB : reg8
+	PORT MAP(
+		i_clear => i_clear,
+		i_clock => i_clock,
+		i_Enable => i_enable,
+		i_data => i_read,
+		o_Q => o_read
+		);
+
+
+
+		
+
+
+
+END rtl;

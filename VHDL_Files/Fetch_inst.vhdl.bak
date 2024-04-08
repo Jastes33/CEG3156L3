@@ -1,0 +1,23 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY Fetch_inst IS
+	PORT(
+		i_resetBar	: IN	STD_LOGIC;
+		i_d		: IN	STD_LOGIC;
+		i_enable	: IN	STD_LOGIC;
+		i_clock		: IN	STD_LOGIC;
+		o_q, o_qBar	: OUT	STD_LOGIC);
+END Fetch_inst;
+
+ARCHITECTURE rtl OF Fetch_inst IS
+	SIGNAL int_q : STD_LOGIC;
+
+BEGIN
+
+component
+
+
+
+END
+ 

@@ -1,0 +1,54 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY MEM_DATA IS
+	PORT(
+		i_ADDR , i_Data	: IN	STD_LOGIC_VECTOR(7 Downto 0);
+		i_clock				: IN	STD_LOGIC;
+		o_data      		: OUT	STD_LOGIC_VECTOR(7 Downto 0));
+
+END MEM_INST;
+
+ARCHITECTURE rtl OF MEM_INST IS
+
+SIGNAL int_A, int_B : STD_LOGIC_VECTOR (15 DOWNTO 0);
+
+
+
+COMPONENT reg8 IS
+	PORT(
+		i_clear	: IN	STD_LOGIC;
+		i_clock			: IN	STD_LOGIC;
+		i_Enable			: IN STD_LOGIC;
+		i_data: IN STD_LOGIC_VECTOR(7 downto 0);
+		o_Q			: OUT	STD_LOGIC_VECTOR(7 downto 0));
+		
+END COMPONENT;
+		
+COMPONENT decoder_4to16 is
+    Port (
+        i_in : in STD_LOGIC_VECTOR (3 downto 0);
+        o_out : out STD_LOGIC_VECTOR (15 downto 0)
+    );
+end COMPONENT;		
+
+	
+BEGIN
+
+A : decoder_4to16
+    Port MAP(
+        i_in => i_ADDR(3 DOWnto 0),
+        o_out
+    );
+	 
+B : decoder_4to16
+    Port MAP(
+        i_in => i_ADDR(7 DOWNTO 4),
+        o_out
+    );
+	
+	FOR i IN 0 TO 16 LOOP
+		FOR i IN 0 TO 16 LOOP
+
+
+END;

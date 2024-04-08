@@ -1,0 +1,23 @@
+ LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY topblock IS
+	PORT(
+		i_valsel, i_instsel : IN STD_LOGIC_VECTOR(2 downto 0);
+		i_GClock, i_GReset : IN STD_LOGIC;
+		o_branchout, o_zeroOut, o_memwriteout, o_regwriteOut : OUT STD_LOGIC;
+		o_muxout : OUT STD_LOGIC_VECTOR(7 downto 0);
+		o_instructionOUT : OUT STD_LOGIC_VECTOR(31 downto 0)
+	);
+		
+END topblock;
+
+ARCHITECTURE rtl OF topblock IS
+
+
+
+begin 
+
+
+
+end rtl;

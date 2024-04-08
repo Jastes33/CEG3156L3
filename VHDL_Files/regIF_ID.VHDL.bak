@@ -1,0 +1,32 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY regIF_ID IS
+	PORT(
+		i_clear	: IN	STD_LOGIC;
+		i_clock			: IN	STD_LOGIC;
+		i_Enable			: IN STD_LOGIC;
+		i_data: IN STD_LOGIC_VECTOR(31 downto 0);
+		o_Q			: OUT	STD_LOGIC_VECTOR(31 downto 0));
+		
+END regIF_ID;
+
+ARCHITECTURE rtl OF regIF_ID IS
+
+COMPONENT reg8
+	PORT(
+		i_clear	: IN	STD_LOGIC;
+		i_clock			: IN	STD_LOGIC;
+		i_Enable			: IN STD_LOGIC;
+		i_data: IN STD_LOGIC_VECTOR(7 downto 0);
+		o_Q			: OUT	STD_LOGIC_VECTOR(7 downto 0));
+		
+END COMPONENT;
+
+BEGIN
+
+
+
+
+
+END rtl;

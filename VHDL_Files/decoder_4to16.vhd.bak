@@ -1,0 +1,36 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity decoder_4to16 is
+    Port (
+        input : in STD_LOGIC_VECTOR (3 downto 0);
+        output : out STD_LOGIC_VECTOR (15 downto 0)
+    );
+end decoder_4to16;
+
+architecture Behavioral of decoder_4to16 is
+    component AND_GATE is
+        Port ( 
+            input1 : in STD_LOGIC;
+            input2 : in STD_LOGIC;
+            output : out STD_LOGIC
+        );
+    end component;
+    
+    signal and_gates_output : std_logic_vector(15 downto 0);
+    signal inverted_input : std_logic_vector(3 downto 0);
+begin
+    process(input)
+    begin
+        inverted_input <= not input;
+        
+        for i in 0 to 15 loop
+            and_gates_output(i) <= '1';
+            for j in 0 to 3 loop
+                and_gates_output(i) <= and_gates_output(i) and (inverted_input(j) when j = i/2**j else input(j));
+            end loop;
+        end loop;
+        
+        output <= and_gates_output;
+    end process;
+end Behavioral;

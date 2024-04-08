@@ -1,0 +1,46 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY regdata IS
+	PORT(
+		i_read1, i_read2, i_write, i_waddr: IN STD_LOGIC_VECTOR(7 downto 0);
+		
+		i_regwrite : IN STD_LOGIC;
+		
+		i_clear		: IN	STD_LOGIC;
+		i_clock		: IN	STD_LOGIC;
+		
+		o_data1, o_data2 : OUT STD_LOGIC_VECTOR(7 downto 0);
+		
+END regdata;
+
+ARCHITECTURE rtl OF regdata IS
+
+COMPONENT reg8
+	PORT(
+		i_clear	: IN	STD_LOGIC;
+		i_clock			: IN	STD_LOGIC;
+		i_Enable			: IN STD_LOGIC;
+		i_data: IN STD_LOGIC_VECTOR(7 downto 0);
+		o_Q			: OUT	STD_LOGIC_VECTOR(7 downto 0));
+		
+END COMPONENT;
+
+entity decoder_4to16 is
+    Port (
+        i_in : in STD_LOGIC_VECTOR (3 downto 0);
+        o_out : out STD_LOGIC_VECTOR (15 downto 0)
+    );
+end decoder_4to16;
+
+ENTITY eightBitmux16by2to1 IS
+	PORT(
+		in_op0,in_op1,in_op2,in_op3,in_op4,in_op5,in_op6,in_op7:IN STD_LOGIC_VECTOR(7 downto 0);
+		in_op8,in_op9,in_op10,in_op11,in_op12,in_op13,in_op14,in_op15:IN STD_LOGIC_VECTOR(7 downto 0);
+		i_selection: IN STD_LOGIC_VECTOR(15 downto 0);
+		o_choice:OUT STD_LOGIC_VECTOR(7 downto 0));
+END eightBitmux16by2to1;
+
+BEGIN
+
+END rtl;
